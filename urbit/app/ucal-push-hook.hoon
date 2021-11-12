@@ -1,6 +1,5 @@
 /-  ucal-store, *resource, *ucal-almanac, ucal-hook
-/+  default-agent, push-hook, *resource, *ucal-almanac, ucal-util, agentio, dbug
-=>
+/+  default-agent, push-hook, *resource, *ucal-almanac, ucal-util, agentio, dbug, verb
 |%
 +$  card  card:agent:gall
 ::
@@ -19,6 +18,7 @@
 ::
 %-  agent:dbug
 ^-  agent:gall
+%+  verb  |
 %-  (agent:push-hook config)
 ^-  agent
 |_  =bowl:gall
@@ -33,45 +33,44 @@
 ++  on-watch
   |=  pax=path
   ^-  (quip card _this)
-  `this
-  :::_  this
-  ::?+    pax  !!
-  ::    [@p %public-calendars ~]
-  ::  =/  who=@p  `@p`(slav %p `@tas`i.pax)
-  ::  ::  shouldn't get asked for another ship's public calendars
-  ::  ?>  =(who our.bowl)
-  ::  =/  cag=cage
-  ::      :-  %ucal-hook-update
-  ::      ^-  vase
-  ::      !>  ^-  update:ucal-hook
-  ::      :+  %metadata
-  ::        our.bowl
-  ::      =/  us=@tas  (scot %p our.bowl)
-  ::      =/  cals=(list calendar)
-  ::          .^  (list calendar)
-  ::            %gx
-  ::            us
-  ::            %ucal-store
-  ::            (scot %da now.bowl)
-  ::            us
-  ::            /calendars/noun
-  ::          ==
-  ::      %+  turn
-  ::        ::  only expose calendars the querying ship can access
-  ::        %+  skim
-  ::          cals
-  ::        |=  cal=calendar
-  ::        ^-  flag
-  ::        (can-read-cal:ucal-util [owner permissions]:cal src.bowl)
-  ::      |=  cal=calendar
-  ::      ^-  metadata:ucal-hook
-  ::      [owner.cal title.cal calendar-code.cal]
-  ::  ::  now send a single update and terminate the subscription
-  ::  :~
-  ::    `card`[%give %fact ~ cag]
-  ::    `card`[%give %kick ~ ~]
-  ::  ==
-  ::==
+  :_  this
+  ?+    pax  !!
+      [@p %public-calendars ~]
+    =/  who=@p  `@p`(slav %p `@tas`i.pax)
+    ::  shouldn't get asked for another ship's public calendars
+    ?>  =(who our.bowl)
+    =/  cag=cage
+        :-  %ucal-hook-update
+        ^-  vase
+        !>  ^-  update:ucal-hook
+        :+  %metadata
+          our.bowl
+        =/  us=@tas  (scot %p our.bowl)
+        =/  cals=(list calendar)
+            .^  (list calendar)
+              %gx
+              us
+              %ucal-store
+              (scot %da now.bowl)
+              us
+              /calendars/noun
+            ==
+        %+  turn
+          ::  only expose calendars the querying ship can access
+          %+  skim
+            cals
+          |=  cal=calendar
+          ^-  flag
+          (can-read-cal:ucal-util [owner permissions]:cal src.bowl)
+        |=  cal=calendar
+        ^-  metadata:ucal-hook
+        [owner.cal title.cal calendar-code.cal]
+    ::  now send a single update and terminate the subscription
+    :~
+      `card`[%give %fact ~ cag]
+      `card`[%give %kick ~ ~]
+    ==
+  ==
 ++  on-peek   on-peek:def
 ++  on-leave  on-leave:def
 ++  on-arvo   on-arvo:def
@@ -79,9 +78,9 @@
 ::
 ++  transform-proxy-update
   |=  vas=vase
-  ^-  (unit vase)
+  ^-  (quip card (unit vase))
   ::  TODO for now just always accept
-  `vas
+  ``vas
 ::  NOTE: must be kept in sync with +resource-for-update in ucal-pull-hook
 ::
 ++  resource-for-update
@@ -92,7 +91,7 @@
 ::
 ++  take-update
   |=  =vase
-  ^-  [(list card) agent]
+  ^-  (quip card _this)
   =/  ts=to-subscriber:ucal-store  !<(to-subscriber:ucal-store vase)
   ?.  ?=([%update *] +.ts)
     `this
