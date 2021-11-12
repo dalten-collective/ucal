@@ -1,5 +1,5 @@
 /-  ucal, ucal-almanac, ucal-store, *resource
-/+  default-agent, *ucal-util, alma-door=ucal-almanac, ucal-parser, tzconv=iana-conversion
+/+  default-agent, *ucal-util, alma-door=ucal-almanac, ucal-parser, tzconv=iana-conversion, dbug
 ::
 ::: local type
 ::
@@ -36,6 +36,7 @@
 ::
 ::: state
 ::
+%-  agent:dbug
 =|  state=versioned-state
 ::
 ::: gall agent definition
