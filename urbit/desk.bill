@@ -1,5 +1,6 @@
 :~  %calendar
     %timezone-store
-    %ucal-pull-hook
     %ucal-store
+    %ucal-pull-hook
+    %ucal-push-hook
 ==

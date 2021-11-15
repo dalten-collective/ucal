@@ -1,0 +1,9 @@
+:~  title+'uCal'
+    info+'An Urbit Calendar'
+    color+0xff.d966
+    version+[0 0 1]
+    site+/apps/ucal
+    base+'ucal'
+    website+'https://dalten.org/'
+    license+'Get Rekt'
+==
