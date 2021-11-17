@@ -82,6 +82,7 @@ export default class UrbitApi {
         } else if (r.status > 399) {
           throw new Error("Scry failed")
         }
+        console.log(r.status)
         return r.json() as Promise<T>
       })
       .catch()
