@@ -32,18 +32,19 @@
 ++  on-init
   ^-  (quip card _this)
   |^
-  :_  %_  this
-          serving
-        %-  ~(gas by *^serving)
-        %+  turn
-          ^-  (list path)
-          [/ /'~landscape' ~]
-        |=(pax=path [pax [clay+/app/landscape %.n %.y]])
-      ==
-  :~  (connect /)
-      (connect /'~landscape')
-      [%pass /serve-who %arvo %e %serve [~ /who] %home /gen/who/hoon ~]
-  ==
+  `this
+  :::_  %_  this
+  ::        serving
+  ::      %-  ~(gas by *^serving)
+  ::      %+  turn
+  ::        ^-  (list path)
+  ::        [/ /'~landscape' ~]
+  ::      |=(pax=path [pax [clay+/app/landscape %.n %.y]])
+  ::    ==
+  :::~  (connect /)
+  ::    (connect /'~landscape')
+  ::    [%pass /serve-who %arvo %e %serve [~ /who] %home /gen/who/hoon ~]
+  ::==
   ::
   ++  connect
     |=  =path
